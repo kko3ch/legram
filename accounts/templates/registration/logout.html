@@ -1,0 +1,10 @@
+{% extends 'accounts/base.html'%}
+{% load crispy_forms_tags %}
+{% block content%}
+    <h3 style="color: green; margin-top: 150px;">You have been logged out successfully!</h3>
+    <div class="content-section">
+            <div class="border-top pt-3">
+                <small class="text-muted"><a href="{% url 'login' %}">Log In Again</a></small>
+            </div>
+    </div>
+{% endblock%}
