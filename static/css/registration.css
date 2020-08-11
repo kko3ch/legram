@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+.legram{
+    margin-top: 140px;
+}
+.form-control{
+    margin-bottom: 30px;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
