@@ -1,15 +1,25 @@
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block styles%}
-        {% bootstrap_css%}
-    {% endblock %}
-    <title>legram</title>
-</head>
-<body>
-    <h1 class="text-center">I work!!!!!!!!</h1>
-</body>
-</html>
+{% extends 'base.html'%}
+{% block content%}
+{{block.super}}
+{% load static %}
+{% for image in images%}
+<div class="card mb-5">
+    <div class="card-title">
+        <p>
+            <a href="#"><img style="border-radius: 30px;" src="{{ image.profile.profile_picture }}" alt="" width="30px" height="30px"></a>
+            <span class="ml-2">{{ image.profile }}</span>
+        </p>
+    </div>
+    <img src="{{ image.image.url }}" class="card-img-top" alt="..." width="30px" height="400px">
+    <div class="card-body">
+        <a style="margin-right: 10px;" href="/"><img src="{% static 'images/heart.svg'%}" alt=""></a>
+        <a href="/"><img src="{% static 'images/message-square.svg'%}" alt=""></a>
+        <br>
+        <p class="mt-3">{% firstof image.likes.count "0" %} likes </p>
+        <hr>
+        <p>{% firstof image.comments.count "0" %} comments</p>
+        <a href="">comment</a>
+    </div>
+</div>
+{% endfor%}
+{% endblock %}
