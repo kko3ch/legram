@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content%}
+<form  style="color: white;align-items: center; margin-left: 200px; background: linear-gradient(to top right, #003300 0%, #ff0066 100%); padding: 100px;" action="{%url 'gram-post'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+        <div class="image-name">
+        <label for="name">name</label>   
+        {{ form.name }}
+        </div>
+        <div class="image" style="margin-top: 50px;">
+          {{form.image}}
+      </div>
+      <div class="caption" style="margin-top: 50px;">
+          <label for="">caption</label>
+        {{form.caption}}
+      </div>
+      <input style="margin-top: 30px; margin-left: 100px;" type="submit" class="btn btn-outline-info" value="Post">
+</form>
+{% endblock%}
