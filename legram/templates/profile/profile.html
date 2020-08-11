@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<div class="row" style="height: 40vh; background-color: whitesmoke;">
+    <div class="col-md-3 col-sm-3">
+        <img src="{% static 'images/koi.png'%}" alt="" style="height: 200px; width: 200px;">
+        <h3>Tom Tom</h3>
+        <small> Koech</small> 
+    </div>
+    <div class="col-md-3 col-sm-6"></div>
+    <div class="col-md-6 col-sm-6">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, mollitia ipsum. 
+            Aut consequuntur quod dignissimos natus laboriosam, repellat, accusantium optio consectetur
+            vitae earum ducimus voluptatem omnis numquam. Tenetur, perferendis adipisci.</p>           
+        <a href="{% url 'gram-profile-update' %}" class="btn" style="border: 2px solid black;">Edit Profile</a>
+    </div>
+</div>
+<hr>
+<div class="text-center mb-4 ml-5">
+    <img src="{% static 'images/grid.svg' %}" alt="">
+</div>
+<hr>
+<div class="row">
+    <div class="flex-container" style="display: flex;flex-wrap: wrap; justify-content: space-around;">  
+        <img src="{% static 'images/koi.png'%}" alt="" class="flex-item mb-5" width="200px" height="200px">
+        <img src="{% static 'images/koi.png'%}" alt="" class="flex-item mb-5" width="200px" height="200px">
+        <img src="{% static 'images/koi.png'%}" alt="" class="flex-item mb-5" width="200px" height="200px">
+        <img src="{% static 'images/koi.png'%}" alt="" class="flex-item mb-5" width="200px" height="200px">
+        <img src="{% static 'images/koi.png'%}" alt="" class="flex-item mb-5" width="200px" height="200px">
+    </div>
+</div>
+{% endblock%}
