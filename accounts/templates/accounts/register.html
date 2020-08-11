@@ -1,0 +1,21 @@
+{% extends 'accounts/base.html'%}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="content-section">
+        <h4 class="text-center" style="color: black; background-color: silver;">Join Today</h4>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        {% if form.errors %}
+        <p style="color: red;">{{ form.errors }}</p>
+        {% endif %}
+        <div class="border-top pt-3">
+            <small class="text-muted">Already have an acount? <a class="ml-2" href="{% url 'login'%}">Sign in</a></small>
+        </div>
+    </div>
+{% endblock%}
