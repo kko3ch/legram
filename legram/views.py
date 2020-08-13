@@ -1,16 +1,22 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . forms import NewImageForm,EditProfileForm
 from . models import Image,Profile,Comment,Following,Follower
 from django.db import transaction
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.http import Http404
+from django.http import Http404,HttpResponseRedirect
+from django.urls import reverse
 
 @login_required(login_url="login")
 def home(request):
     images = Image.all_images().order_by('-pub_date')
     return render(request, 'home.html', {'images':images})
+
+def like_image(request,id):
+    image = get_object_or_404(Image, id = request.POST('image_id'))
+    image.likes.add(request.user)
+    return HttpResponseRedirect(reverse('image', args=[str(id)]))
 
 def profile(request):
     user = request.user
