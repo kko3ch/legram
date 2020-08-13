@@ -70,6 +70,17 @@ class Comment(models.Model):
     def __str__(self):
         return self.name
 
+# class Like(models.Model):
+#     ''' like  comment '''
+
+#     image = models.OneToOneField(Image, on_delete=models.CASCADE)
+#     users = models.ManyToManyField(User, related_name='requirement_comment_likes')
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+
+#     def __str__(self):
+#         return str(self.comment.comment)[:30]
+
 class Image(models.Model):
     '''
     class that defines an instance of Image
@@ -78,7 +89,7 @@ class Image(models.Model):
     name = models.CharField(max_length =30)
     caption = models.CharField(max_length=100)
     profile = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    likes = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name='images')
     comments = models.ForeignKey(Comment,on_delete=models.CASCADE,null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
 
