@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'profile/(?P<username>[\w\-]+)/$', views.other_profile, name='gram-other-profile'),
     url(r'profile/update_profile/', views.update_profile, name = 'gram-profile-update'),
     url(r'new_post/', views.new_image_post, name = 'gram-post'),
+    url(r'like/(\d+)/$', views.like_image, name = 'gram-like-post'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
