@@ -11,7 +11,10 @@ def register_view(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password1')
             new_user = User.objects.create_user(username = username,email = email)
+            new_user.save()
+            new_user.set_password(password)
             new_user.save()
             messages.success(request, f'Account created for {username}')
             return redirect('login')
