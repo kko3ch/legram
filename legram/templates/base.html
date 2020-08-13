@@ -45,7 +45,7 @@
             <a href="#">
                 <img style=" border-radius: 80px;" src="{{ user.profile.profile_picture }}" alt="" width="80x" height="80px">
             </a> 
-            <h4>{{ user.username }}</h4>
+            <h4>{{ user.profile }}</h4>
             <div class="row mt-5">
                 <div class="col-sm-6">
                     <h5>Followers <br>
@@ -59,7 +59,9 @@
                 </div>
             </div>
             <hr>
-            <a href="{% url 'gram-profile'%}">View Profile</a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'gram-profile' %}">Profile</a>
+            {% endif%}
             <hr>
             <p>
                 New Post

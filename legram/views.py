@@ -4,18 +4,30 @@ from . forms import NewImageForm,EditProfileForm
 from . models import Image,Profile,Comment,Following,Follower
 from django.db import transaction
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.http import Http404
 
 @login_required(login_url="login")
 def home(request):
-    images = Image.all_images()
+    images = Image.all_images().order_by('-pub_date')
     return render(request, 'home.html', {'images':images})
 
-@login_required
 def profile(request):
-    return render(request,'profile/profile.html')
+    user = request.user
+    images = Image.objects.filter(profile=user.id)
+    return render (request,'profile/profile.html',{'images':images,'user':user})
 
+@transaction.atomic
+def other_profile(request,username):
+    try:
+        user = Profile.objects.get(user=username)
+    except:
+        raise Http404
+    if request.user.is_authenticated() and request.user == user:
+        images = Image.objects.filter(profile=user.id)
+    return render (request,'profile/other_profile.html', {'images':images,'user':user})
 
-@login_required
+@login_required(login_url="login")
 @transaction.atomic
 def update_profile(request):
     if request.method == 'POST':

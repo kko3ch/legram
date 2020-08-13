@@ -24,7 +24,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
     second_name = models.CharField(max_length=30, blank=True)
     bio = models.TextField(max_length=500, blank=True)
-    profile_picture = models.ImageField(upload_to='images/',null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/',null=True)
     birth_date = models.DateField(null=True, blank=True)
     followers = models.ForeignKey(Follower,on_delete=models.CASCADE,null=True)
     following = models.ForeignKey(Following,on_delete=models.CASCADE,null=True)
@@ -47,6 +47,9 @@ class Profile(models.Model):
     @classmethod
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
+
+    def __str__(self):
+        return f'{self.user.username}'
 
 class Comment(models.Model):
     '''

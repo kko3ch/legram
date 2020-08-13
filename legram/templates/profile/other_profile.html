@@ -1,12 +1,11 @@
 {% extends 'base.html'%}
-{{block.super}}
 {% block content %}
 {% load static %}
 <div class="row" style="height: 40vh; background-color: whitesmoke;">
     <div class="col-md-3 col-sm-3">
         <img src="{% static 'images/koi.png'%}" alt="" style="height: 200px; width: 200px;">
-        <h3>{{user.username}}</h3>
-        <p><small>{{ user.firstname }} {{ user.lastname }}</small></p> 
+        <h3>{{user.profile}}</h3>
+        <p><small>{{ user.profile.firstname }} {{ user.profile.lastname }}</small></p> 
     </div>
     <div class="col-md-3 col-sm-6"></div>
     <div class="col-md-6 col-sm-6">
