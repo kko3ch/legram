@@ -15,7 +15,7 @@ As a user of the application I should be able to:
 Tom Koech
 
 ## Live link
-Visit the application on 
+Visit the application on https://le-gram.herokuapp.com/
 
 ## Technologies Used
 Technologies used to develop this application:
@@ -23,7 +23,12 @@ Technologies used to develop this application:
 1. Python v3.8
 2. Django
 4. HTML 
-5. CSS
+5. CSSa
+
+## Features still working on
+- like button
+- commenting
+- view other users profile
 
 ## contact details
 
