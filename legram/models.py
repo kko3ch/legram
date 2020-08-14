@@ -70,17 +70,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.name
 
-# class Like(models.Model):
-#     ''' like  comment '''
-
-#     image = models.OneToOneField(Image, on_delete=models.CASCADE)
-#     users = models.ManyToManyField(User, related_name='requirement_comment_likes')
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#         return str(self.comment.comment)[:30]
-
 class Image(models.Model):
     '''
     class that defines an instance of Image

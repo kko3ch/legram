@@ -13,10 +13,15 @@ def home(request):
     images = Image.all_images().order_by('-pub_date')
     return render(request, 'home.html', {'images':images})
 
-def like_image(request,id):
-    image = get_object_or_404(Image, id = request.POST('image_id'))
-    image.likes.add(request.user)
-    return HttpResponseRedirect(reverse('image', args=[str(id)]))
+def search_results(request):
+    if 'search_profile' in request.GET and request.GET['search_profile']:
+        name = request.GET.get("search_profile")
+        results = Profile.search_profile(name)
+        message = f'{name}'
+        return render(request, 'search.html', {'results':results,'message':message})
+    else:
+        message = "User not found"
+        return render(request, 'search.html', {'message': message})
 
 def profile(request):
     user = request.user
