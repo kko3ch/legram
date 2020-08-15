@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from . forms import NewImageForm,EditProfileForm
+from . forms import NewImageForm,EditProfileForm,CommentForm
 from . models import Image,Profile,Comment,Following,Follower
 from django.db import transaction
 from django.contrib import messages
@@ -28,15 +28,15 @@ def profile(request):
     images = Image.objects.filter(profile=user.id)
     return render (request,'profile/profile.html',{'images':images,'user':user})
 
-@transaction.atomic
-def other_profile(request,username):
-    try:
-        user = Profile.objects.get(user=username)
-    except:
-        raise Http404
-    if request.user.is_authenticated() and request.user == user:
-        images = Image.objects.filter(profile=user.id)
-    return render (request,'profile/other_profile.html', {'images':images,'user':user})
+# @transaction.atomic
+# def other_profile(request):
+#     try:
+#         user = Profile.objects.get(user=username)
+#     except:
+#         raise Http404
+#     if request.user.is_authenticated() and request.user == user:
+#         images = Image.objects.filter(profile=user.id)
+#     return render (request,'profile/other_profile.html', {'images':images,'user':user})
 
 @login_required(login_url="login")
 @transaction.atomic
@@ -65,3 +65,16 @@ def new_image_post(request):
     else:
         form = NewImageForm()
     return render(request,'new_post.html',{"form": form})
+
+def post_by_id(request,id):
+    image = Image.objects.get(id=id)
+    comments = Comment.comments_on_image(id)
+    form = CommentForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.image.profile = request.user
+            comment.save()
+            HttpResponseRedirect('gram-single_post')
+    return render(request,'single_image.html',{'image':image,'comments':comments,'form':form})
