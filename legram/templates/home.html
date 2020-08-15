@@ -6,7 +6,7 @@
 <div class="card mb-5">
     <div class="card-title">
         <p>
-            <a href="#"><img style="border-radius: 30px;" src="{{ image.profile.profile_picture }}" alt="" width="30px" height="30px">
+            <a style="text-decoration: none;" href="{% url 'gram-profile' image.profile.id %}"><img style="border-radius: 30px;" src="{{ image.profile.profile_picture }}" alt="" width="30px" height="30px">
             <span class="ml-2" style="color: rgb(136, 83, 83);">{{ image.profile }}</span>
             </a>
         </p>

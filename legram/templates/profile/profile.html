@@ -11,7 +11,7 @@
     <div class="col-md-3 col-sm-6"></div>
     <div class="col-md-6 col-sm-6">
         <p>{{ user.bio }}</p>           
-        {% if user.is_authenticated %}
+        {% if request.us%}
         <a href="{% url 'gram-profile-update' %}" class="btn" style="border: 2px solid black;">Edit Profile</a>
         {% endif %}
     </div>

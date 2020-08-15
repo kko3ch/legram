@@ -19,7 +19,7 @@
         <li><a href="/"><img src="{% static 'images/home.svg'%}" alt=""></a></li>
         <li><a href="#projects"><img src="{% static 'images/heart.svg'%}" alt=""></a></li>
         <li><a href="#projects"><img src="{% static 'images/send.svg'%}" alt=""></a></li>
-        <li><a href="{% url 'gram-profile' %}"><img style=" border-radius: 30px;" src="{% static 'images/koi.png'}" alt="" width="30x" height="30px"></a></li> 
+        <li><a href="{% url 'gram-profile' request.user.id %}"><img style=" border-radius: 30px;" src="{% static 'images/koi.png'}" alt="" width="30x" height="30px"></a></li> 
         <li><a style="color: cadetblue; font-size: 15px;" href="{% url 'logout'%}">logout</a></li>
         <li>
             <form class="navbar-form" role='search' action="{% url 'gram-search' %}">
@@ -60,7 +60,7 @@
             </div>
             <hr>
             {% if request.user.is_authenticated %}
-            <a href="{% url 'gram-profile' %}">Profile</a>
+            <a href="{% url 'gram-profile' request.user.id%}">Profile</a>
             {% endif%}
             <hr>
             <p>

@@ -23,8 +23,8 @@ def search_results(request):
         message = "User not found"
         return render(request, 'search.html', {'message': message})
 
-def profile(request):
-    user = request.user
+def profile(request,id):
+    user = get_object_or_404(User, id=id)
     images = Image.objects.filter(profile=user.id)
     return render (request,'profile/profile.html',{'images':images,'user':user})
 
