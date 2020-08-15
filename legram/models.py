@@ -38,9 +38,6 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
     
-    def save_profile(self):
-        self.user
-
     def delete_profile(self):
         self.delete()
 
@@ -51,25 +48,6 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username}'
 
-class Comment(models.Model):
-    '''
-    class that defines a category object
-    '''
-    name = models.CharField(max_length =30)
-
-    def save_comment(self):
-        self.save()
-
-    def delete_comment(self):
-        self.delete()
-
-    @classmethod
-    def all_comments(cls):
-        return cls.objects.all()
-
-    def __str__(self):
-        return self.name
-
 class Image(models.Model):
     '''
     class that defines an instance of Image
@@ -79,7 +57,6 @@ class Image(models.Model):
     caption = models.CharField(max_length=100)
     profile = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     likes = models.ManyToManyField(User, related_name='images')
-    comments = models.ForeignKey(Comment,on_delete=models.CASCADE,null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     class meta:
@@ -101,5 +78,37 @@ class Image(models.Model):
         images = cls.objects.filter(location=profile_name.id)
         return images
     
+    @property
+    def comments(self):
+        comments = Comment.objects.filter(image = self)
+        return comments
+
     def __str__(self):
         return self.name
+
+class Comment(models.Model):
+    '''
+    class that defines a category object
+    '''
+    image = models.ForeignKey(Image,on_delete=models.CASCADE,null=True)
+    name = models.CharField(max_length =255)
+    body = models.TextField(null=True)
+    pub_date = models.DateTimeField(auto_now=True)
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    @classmethod
+    def all_comments(cls):
+        return cls.objects.all()
+
+    @classmethod
+    def comments_on_image(cls,id):
+        comments = cls.objects.filter(image=id)
+        return comments
+
+    def __str__(self):
+        return '%s - %s' % (self.image.name, self.name)
