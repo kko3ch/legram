@@ -24,7 +24,7 @@
 <div class="row">
     {% for image in images %}
     <div class="flex-container" style="display: flex;flex-wrap: wrap; justify-content: space-between;">  
-        <img src="{{image.image.url}}" alt="" class="flex-item mb-5 mr-4" width="200px" height="200px">
+        <a href="{{ url  'gram-single_post' image.id  }}"><img src="{{image.image.url}}" alt="" class="flex-item mb-5 mr-4" width="200px" height="200px"></a>
     </div>
     {% endfor %}
 </div>
