@@ -32,7 +32,7 @@ Technologies used to develop this application:
 
 ## contact details
 
-Feel free to email me:[tomko3ch@gmail.com](mailto:tomko3ch@gmail.com)
+Feel free to email me:[tom.k.kipkurui.com](mailto:tom.k.kipkurui@gmail.com)
 
 ## License
 MIT LICENSE
