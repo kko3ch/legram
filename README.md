@@ -36,4 +36,4 @@ Feel free to email me:[tom.k.kipkurui.com](mailto:tom.k.kipkurui@gmail.com)
 
 ## License
 MIT LICENSE
-Copyright (c) 2020 [Ko3ch](https://github.com/Ko3ch)
+Copyright (c) 2020 [kko3ch](https://github.com/kko3ch)
