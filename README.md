@@ -12,7 +12,7 @@ As a user of the application I should be able to:
 - Like a picture and leave a comment on it..
 
 ## Author
-Tom Koech
+Tom Hermes Kipkurui
 
 ## Live link
 Visit the application on https://le-gram.herokuapp.com/
